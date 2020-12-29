@@ -3,6 +3,7 @@ import { Button, ButtonType } from "office-ui-fabric-react";
 import Header from "./Header";
 import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
+import { TextFieldBasicExample } from "./TextField";
 // images references in the manifest
 import "../../../assets/icon-16.png";
 import "../../../assets/icon-32.png";
@@ -67,17 +68,18 @@ export default class App extends React.Component<AppProps, AppState> {
 
     if (!isOfficeInitialized) {
       return (
-        <Progress title={title} logo="assets/logo-filled.png" message="Please sideload your addin to see app body." />
+        <Progress title={title} logo="assets/yasashi_DX.png" message="Please sideload your addin to see app body." />
       );
     }
 
     return (
       <div className="ms-welcome">
-        <Header logo="assets/logo-filled.png" title={this.props.title} message="Welcome" />
+        <Header logo="assets/yasashi_DX.png" title={this.props.title} message="Countdown Timer" />
         <HeroList message="Discover what Office Add-ins can do for you today!" items={this.state.listItems}>
           <p className="ms-font-l">
             Modify the source files, then click <b>Run</b>.
           </p>
+          <TextFieldBasicExample/>
           <Button
             className="ms-welcome__action"
             buttonType={ButtonType.hero}
