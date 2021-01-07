@@ -30,17 +30,17 @@ export default class App extends React.Component<AppProps, AppState> {
   componentDidMount() {
     this.setState({
       listItems: [
-        {
+        /*{
           icon: "Ribbon",
           primaryText: "Achieve more with Office integration"
+        },*/
+        {
+          icon: "Timer",
+          primaryText: "seconds"
         },
         {
-          icon: "Unlock",
-          primaryText: "Unlock features and functionality"
-        },
-        {
-          icon: "Design",
-          primaryText: "Create and visualize like a pro"
+          icon: "BufferTimeBoth",
+          primaryText: "interval"
         }
       ]
     });
@@ -75,7 +75,8 @@ export default class App extends React.Component<AppProps, AppState> {
     return (
       <div className="ms-welcome">
         <Header logo="assets/yasashi_DX.png" title={this.props.title} message="Countdown Timer" />
-        <HeroList message="Discover what Office Add-ins can do for you today!" items={this.state.listItems}>
+        <HeroList message="作成するTimerの秒数と間隔を入力してね！" items={this.state.listItems} />
+        {/*
           <p className="ms-font-l">
             Modify the source files, then click <b>Run</b>.
           </p>
@@ -89,6 +90,7 @@ export default class App extends React.Component<AppProps, AppState> {
             Run
           </Button>
         </HeroList>
+        */}
       </div>
     );
   }

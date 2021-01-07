@@ -1,4 +1,5 @@
 import * as React from "react";
+import { TextField } from 'office-ui-fabric-react/lib/TextField';
 
 export interface HeroListItem {
   icon: string;
@@ -16,13 +17,14 @@ export default class HeroList extends React.Component<HeroListProps> {
 
     const listItems = items.map((item, index) => (
       <li className="ms-ListItem" key={index}>
-        <i className={`ms-Icon ms-Icon--${item.icon}`}></i>
-        <span className="ms-font-m ms-fontColor-neutralPrimary">{item.primaryText}</span>
+        {/*<i className={`ms-Icon ms-Icon--${item.icon}`}></i>*/}
+        {/*<span className="ms-font-m ms-fontColor-neutralPrimary">{item.primaryText}</span>*/}
       </li>
+      <TextField label={item.primaryText} underlined />
     ));
     return (
       <main className="ms-welcome__main">
-        <h2 className="ms-font-xl ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">{message}</h2>
+        <h2 className="ms-font-m ms-fontWeight-semilight ms-fontColor-neutralPrimary ms-u-slideUpIn20">{message}</h2>
         <ul className="ms-List ms-welcome__features ms-u-slideUpIn10">{listItems}</ul>
         {children}
       </main>
