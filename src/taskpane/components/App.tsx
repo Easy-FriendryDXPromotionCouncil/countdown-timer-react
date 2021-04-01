@@ -1,14 +1,41 @@
 import * as React from "react";
-import { Button, ButtonType } from "office-ui-fabric-react";
-import Header from "./Header";
-import HeroList, { HeroListItem } from "./HeroList";
 import Progress from "./Progress";
-import { TextFieldBasicExample } from "./TextField";
 // images references in the manifest
 import "../../../assets/icon-16.png";
 import "../../../assets/icon-32.png";
 import "../../../assets/icon-80.png";
 /* global Button, console, Header, HeroList, HeroListItem, Office, Progress */
+
+//= ui-Dropdown 
+import { Dropdown, IDropdownStyles, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown'
+const dropdownStyles: Partial<IDropdownStyles>  = {
+  dropdown: { width: 80 },
+};
+const durationOptions: IDropdownOption[] = [
+  { key: 'duration60', text: '60' },
+  { key: 'duration40', text: '40' },
+  { key: 'duration30', text: '30' },
+  { key: 'duration25', text: '25' },
+];
+const intervalOptions: IDropdownOption[] = [
+  { key: 'interval10', text: '10' },
+  { key: 'interval5', text: '5' },
+  { key: 'interval1', text: '1' },
+];
+function _dropdownSelected(e, selectedOption): void {
+  this.setState({
+    duration: selectedOption,
+    interval: selectedOption
+  });
+}
+
+//= ui-Button
+import { PrimaryButton } from 'office-ui-fabric-react';
+function _alertClicked(): void {
+  alert('Seted!');
+}
+
+
 
 export interface AppProps {
   title: string;
@@ -16,33 +43,21 @@ export interface AppProps {
 }
 
 export interface AppState {
-  listItems: HeroListItem[];
+  duration: 0,
+  interval: 0,
 }
 
 export default class App extends React.Component<AppProps, AppState> {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      listItems: []
+      duration: 0,
+      interval: 0,
     };
   }
 
   componentDidMount() {
     this.setState({
-      listItems: [
-        /*{
-          icon: "Ribbon",
-          primaryText: "Achieve more with Office integration"
-        },*/
-        {
-          icon: "Timer",
-          primaryText: "seconds"
-        },
-        {
-          icon: "BufferTimeBoth",
-          primaryText: "interval"
-        }
-      ]
     });
   }
 
@@ -74,23 +89,21 @@ export default class App extends React.Component<AppProps, AppState> {
 
     return (
       <div className="ms-welcome">
-        <Header logo="assets/yasashi_DX.png" title={this.props.title} message="Countdown Timer" />
-        <HeroList message="作成するTimerの秒数と間隔を入力してね！" items={this.state.listItems} />
-        {/*
-          <p className="ms-font-l">
-            Modify the source files, then click <b>Run</b>.
-          </p>
-          <TextFieldBasicExample/>
-          <Button
-            className="ms-welcome__action"
-            buttonType={ButtonType.hero}
-            iconProps={{ iconName: "ChevronRight" }}
-            onClick={this.click}
-          >
-            Run
-          </Button>
-        </HeroList>
-        */}
+        <Dropdown 
+          label="Duration"
+          options={durationOptions}
+          styles={dropdownStyles}
+        />
+        <Dropdown 
+          label="Interval"
+          options={intervalOptions}
+          styles={dropdownStyles}
+        />
+        <PrimaryButton
+          text="Set"
+          onClick={this.click}
+          allowDisabledFocus
+        />
       </div>
     );
   }
